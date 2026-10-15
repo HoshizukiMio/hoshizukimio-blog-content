@@ -2,7 +2,7 @@
 
 网站：https://blog.hoshizukimio.com/
 
-主题代码独立存放在 `HoshizukiMio/blog`。本仓库只管理内容，旧文章没有迁入。
+主题代码独立存放在 `HoshizukiMio/hoshizukimio-blog`。本仓库只管理内容，旧文章没有迁入。
 
 | 目录 | 内容 |
 | --- | --- |
