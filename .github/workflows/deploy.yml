@@ -1,0 +1,27 @@
+name: Rebuild blog on Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the theme project's production build
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "Missing VERCEL_DEPLOY_HOOK repository secret."
+            exit 1
+          fi
+          curl --fail --silent --show-error --retry 3 --request POST "$VERCEL_DEPLOY_HOOK" > /dev/null
